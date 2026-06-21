@@ -1,3 +1,8 @@
+---
+name: artisan-docs-writer
+description: "Write documentation, PR descriptions, or explanatory text in Laravel's expressive documentation style. Use when asked to write or polish docs/prose in that voice."
+---
+
 # Write documentation in Laravel's expressive style
 
 Write documentation (or any explanatory text) using the same expressive, warm, and clear writing style found in Laravel's official documentation.

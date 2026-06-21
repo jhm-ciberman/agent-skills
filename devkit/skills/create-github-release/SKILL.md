@@ -1,3 +1,8 @@
+---
+name: create-github-release
+description: "Create a GitHub release for a repo with an auto-generated calver tag and generated release notes, behind a confirmation step. Use when cutting a release."
+---
+
 # Create a release for a repo
 
 Create a new GitHub release for a repository with an auto-generated calver tag and release notes.

@@ -1,3 +1,8 @@
+---
+name: org-prs
+description: "List all open PRs across a GitHub organization or user account in a table with CI status. Use to review open pull requests across many repos at once."
+---
+
 # List all open PRs across a GitHub org or account
 
 Fetch all open PRs across a GitHub organization (or user account) and display them in a table with CI status.

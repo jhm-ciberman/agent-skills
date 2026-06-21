@@ -1,7 +1,7 @@
 # agent-skills
 
-A small collection of personal [Claude Code](https://claude.com/claude-code) skills and
-commands I use day to day, mostly opinionated documentation helpers. Take what's useful.
+A small collection of personal [Claude Code](https://claude.com/claude-code) skills I use
+day to day, mostly opinionated documentation helpers. Take what's useful.
 
 ## Install (Claude Code)
 
@@ -15,15 +15,14 @@ after writing some PHP (or just let Claude reach for it from its description).
 
 ## What's inside
 
-### Skills
+Everything is a skill (a `SKILL.md` folder), so it works in Claude and Codex alike.
+
 - **`csharp-docblock-writing`** - review and fix the quality of C# XMLDoc and `//` comments on changed code.
 - **`php-docblock-writing`** - the same, for PHP / Laravel docblocks.
-
-### Commands
+- **`artisan-docs-writer`** - write docs in Laravel's expressive style.
 - **`org-prs`** - list all open PRs across a GitHub org or account, with CI status.
 - **`pending-releases`** - find repos with unreleased commits and show their pending changelogs.
 - **`create-github-release`** - cut a release with an auto-generated calver tag and notes, behind a confirmation step.
-- **`artisan-docs-writer`** - write docs in Laravel's expressive style.
 
 ## Using the skills in Codex
 
@@ -34,8 +33,7 @@ directory at them:
 ln -s "$(pwd)/devkit/skills" ~/.agents/skills
 ```
 
-(Or copy the folders in.) Gemini CLI would need a thin `.toml` wrapper per command and
-isn't covered here yet.
+(Or copy the folders in.)
 
 ## License
 

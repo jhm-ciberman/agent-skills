@@ -1,3 +1,8 @@
+---
+name: pending-releases
+description: "Find repos under a GitHub org or account that have unreleased commits, and show each one's pending changelog. Use to see what's ready to release."
+---
+
 # List repos with pending releases
 
 Scan all repos under a GitHub org or account and show pending changelogs for each repo that has unreleased commits.
