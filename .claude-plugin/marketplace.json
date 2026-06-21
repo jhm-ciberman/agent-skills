@@ -1,0 +1,13 @@
+{
+  "name": "ciberman",
+  "owner": {
+    "name": "Javier Mora"
+  },
+  "plugins": [
+    {
+      "name": "devkit",
+      "source": "./devkit",
+      "description": "Javier 'Ciberman' Mora's personal Claude Code skills and commands."
+    }
+  ]
+}

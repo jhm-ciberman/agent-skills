@@ -1,0 +1,14 @@
+{
+  "name": "devkit",
+  "displayName": "Devkit",
+  "description": "Personal skills: C# and PHP docblock writing, plus GitHub workflow commands.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Javier Mora",
+    "url": "https://github.com/jhm-ciberman"
+  },
+  "homepage": "https://github.com/jhm-ciberman/agent-skills",
+  "repository": "https://github.com/jhm-ciberman/agent-skills",
+  "license": "MIT",
+  "keywords": ["docblock", "documentation", "csharp", "php", "laravel", "github"]
+}
