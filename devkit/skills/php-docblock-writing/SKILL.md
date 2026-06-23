@@ -227,6 +227,88 @@ $this->doThink(); // Prevents issue #123
 $this->doThink(); // This is a costly operation, so we only want to do it once.
 ```
 
+## Remember again: A docblock is a contract.
+
+```php
+// BAD - this explains how in the phpdoc contract. It IS important. But is NOT contract.
+
+/**
+ * Renders a friendly HTML page for authorization errors that can't be redirected
+ * back to the client (an unknown client or an unregistered redirect URI), instead
+ * of Passport's raw OAuth JSON. The raw OAuth error stays visible on the page so a
+ * partner integrating the flow can diagnose it.
+ *
+ * Bound over Passport's controller so the authorize route resolves to this one.
+ */
+class AuthorizationController extends BaseAuthorizationController
+{
+    /**
+     * Authorize a client to access the user's account.
+     */
+    public function authorize(
+        ServerRequestInterface $psrRequest,
+        Request $request,
+        ResponseInterface $psrResponse,
+        AuthorizationViewResponse $viewResponse
+    ): Response|AuthorizationViewResponse {
+        try {
+            return parent::authorize($psrRequest, $request, $psrResponse, $viewResponse);
+        } catch (OAuthServerException $e) {
+            if ($e->getResponse()->isRedirect()) {
+                throw $e;
+            }
+
+            $previous = $e->getPrevious();
+
+            return response()->view('errors.oauth-client', [
+                'status' => $e->getResponse()->getStatusCode(),
+                'error' => $previous instanceof LeagueException ? $previous->getErrorType() : 'invalid_request',
+                'description' => $previous?->getMessage(),
+                'hint' => $previous instanceof LeagueException ? $previous->getHint() : null,
+            ], $e->getResponse()->getStatusCode());
+        }
+    }
+}
+
+// GOOD - moved to a regular implementation comment. (However, only add comments when they are really necessary, otherwise skip them.)
+
+// This class is bound over Passport's controller so the authorize route resolves to this one.
+class AuthorizationController extends BaseAuthorizationController
+{
+    /**
+     * Authorize a client to access the user's account.
+     */
+    public function authorize(
+        ServerRequestInterface $psrRequest,
+        Request $request,
+        ResponseInterface $psrResponse,
+        AuthorizationViewResponse $viewResponse
+    ): Response|AuthorizationViewResponse {
+        try {
+            return parent::authorize($psrRequest, $request, $psrResponse, $viewResponse);
+        } catch (OAuthServerException $e) {
+            if ($e->getResponse()->isRedirect()) {
+                throw $e; // We don't want to mess with Passport redirects
+            }
+
+            // We render a friendly HTML page for authorization errors that can't be redirected
+            // back to the client (an unknown client or an unregistered redirect URI), instead
+            // of Passport's raw OAuth JSON. The raw OAuth error stays visible on the page so a
+            // partner integrating the flow can diagnose it.
+
+            $previous = $e->getPrevious();
+
+            return response()->view('errors.oauth-client', [
+                'status' => $e->getResponse()->getStatusCode(),
+                'error' => $previous instanceof LeagueException ? $previous->getErrorType() : 'invalid_request',
+                'description' => $previous?->getMessage(),
+                'hint' => $previous instanceof LeagueException ? $previous->getHint() : null,
+            ], $e->getResponse()->getStatusCode());
+        }
+    }
+}
+```
+
 ## Don't churn, don't invent
 
 On a refactor, touch a docblock only if the **contract** changed (or it was wrong).
