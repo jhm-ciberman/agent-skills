@@ -2,7 +2,7 @@
   "name": "devkit",
   "displayName": "Devkit",
   "description": "Personal skills: C# and PHP docblock writing, plus GitHub and Laravel workflow helpers.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Javier Mora",
     "url": "https://github.com/jhm-ciberman"
